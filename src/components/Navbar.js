@@ -1,33 +1,47 @@
+import {
+  AppBar,
+  Container,
+  createTheme,
+  makeStyles,
+  ThemeProvider,
+  Toolbar,
+} from "@material-ui/core";
 import React from "react";
+import "./navbar.css";
+const darkTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#fff",
+    },
+    type: "dark",
+  },
+});
+const useStyles = makeStyles(() => ({
+  navBar: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+}));
 
 export default function Navbar() {
+  const classes = useStyles();
   return (
-    
-    <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <div className="container-fluid">
-      <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a className="navbar-brand" href="#">Hidden brand</a>
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">Link</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link disabled">Disabled</a>
-          </li>
-        </ul>
-        <form className="d-flex">
-          <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-          <button className="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-    
+    <ThemeProvider theme={darkTheme}>
+      <AppBar position="static" color="transparent">
+        <Container>
+          <Toolbar className={classes.navBar}>
+            <div className="logoContainer">
+              {/* <img src="/imag/rairkoLogo.png" alt="rarikoImg" /> */}
+            </div>
+            <div className="navLinks">
+              <a href="#home">Home</a>
+              <a href="#about">About</a>
+              <a href="#services">Services</a>
+              <a href="#team">Team</a>
+            </div>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </ThemeProvider>
   );
 }
